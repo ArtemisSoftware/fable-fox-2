@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdtiu70frxk8f"]
+[gd_scene load_steps=3 format=3 uid="uid://bdtiu70frxk8f"]
 
 [ext_resource type="Texture2D" uid="uid://d1ijojoa0dxql" path="res://player/sprites/player.png" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://dpvpt4jxentgk" path="res://player/player.gd" id="1_rkbax"]
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
+script = ExtResource("1_rkbax")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_oul6g")
