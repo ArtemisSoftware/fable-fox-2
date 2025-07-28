@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdtiu70frxk8f"]
+
+[ext_resource type="Texture2D" uid="uid://d1ijojoa0dxql" path="res://player/sprites/player.png" id="1_oul6g"]
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_oul6g")
+hframes = 60
