@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bdtiu70frxk8f"]
+[gd_scene load_steps=52 format=3 uid="uid://bdtiu70frxk8f"]
 
 [ext_resource type="Texture2D" uid="uid://d1ijojoa0dxql" path="res://player/sprites/player.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://dpvpt4jxentgk" path="res://player/player.gd" id="1_rkbax"]
@@ -402,6 +402,28 @@ states/StandState/node = SubResource("AnimationNodeBlendSpace2D_boad6")
 states/StandState/position = Vector2(474, 145)
 transitions = ["Start", "StandState", SubResource("AnimationNodeStateMachineTransition_rgyib"), "StandState", "RunState", SubResource("AnimationNodeStateMachineTransition_2ieo8"), "RunState", "StandState", SubResource("AnimationNodeStateMachineTransition_ebec5")]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8t03j"]
+animation = &"roll_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2ieo8"]
+animation = &"roll_up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ebec5"]
+animation = &"roll_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yllr7"]
+animation = &"roll_down"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_kb6p2"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_8t03j")
+blend_point_0/pos = Vector2(-0.9, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_2ieo8")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_ebec5")
+blend_point_2/pos = Vector2(0.9, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_yllr7")
+blend_point_3/pos = Vector2(0, -1)
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8t03j"]
 advance_mode = 2
 
@@ -411,12 +433,20 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wodsf"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_32hag"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_2ieo8"]
 states/AttackState/node = SubResource("AnimationNodeBlendSpace2D_c35mf")
 states/AttackState/position = Vector2(595, 217.078)
 states/MoveState/node = SubResource("AnimationNodeStateMachine_hg6s5")
 states/MoveState/position = Vector2(589, 85.078)
-transitions = ["Start", "MoveState", SubResource("AnimationNodeStateMachineTransition_8t03j"), "MoveState", "AttackState", SubResource("AnimationNodeStateMachineTransition_rkbax"), "AttackState", "MoveState", SubResource("AnimationNodeStateMachineTransition_g1dw6")]
+states/RollState/node = SubResource("AnimationNodeBlendSpace2D_kb6p2")
+states/RollState/position = Vector2(516, -60.922)
+transitions = ["Start", "MoveState", SubResource("AnimationNodeStateMachineTransition_8t03j"), "MoveState", "AttackState", SubResource("AnimationNodeStateMachineTransition_rkbax"), "AttackState", "MoveState", SubResource("AnimationNodeStateMachineTransition_g1dw6"), "MoveState", "RollState", SubResource("AnimationNodeStateMachineTransition_wodsf"), "RollState", "MoveState", SubResource("AnimationNodeStateMachineTransition_32hag")]
 graph_offset = Vector2(0, -145.922)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ebec5"]
@@ -446,3 +476,4 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/StateMachine/AttackState/blend_position = Vector2(-0.458854, 0.0015552)
 parameters/StateMachine/MoveState/RunState/blend_position = Vector2(-0.5, 0.0412147)
 parameters/StateMachine/MoveState/StandState/blend_position = Vector2(0.0195853, -0.37961)
+parameters/StateMachine/RollState/blend_position = Vector2(-0.390388, 0.443709)
